@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulce Tentación - Repostería & Pastelería</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. VARIABLES CSS & TEMAS (LIGHT / DARK)
+           ========================================================================== */
+        :root {
+            /* Paleta Pastel Cálida */
+            --primary-color: #E85D75;      /* Rosa Frambuesa apetitoso */
+            --primary-hover: #D0425B;
+            --secondary-color: #F7B2AD;    /* Rosa Pastel Suave */
+            --accent-color: #D4AF37;       /* Dorado Elegante */
+            --bg-main: #FFF9F5;            /* Vainilla Suave */
+            --bg-card: #FFFFFF;
+            --bg-surface: #FFF0E5;
+            --text-main: #3D2C2E;          /* Chocolate Obscuro */
+            --text-muted: #7D6B6D;
+            --border-color: #F0D3C9;
+            --shadow-sm: 0 4px 15px rgba(232, 93, 117, 0.08);
+            --shadow-md: 0 8px 25px rgba(61, 44, 46, 0.12);
+            --shadow-lg: 0 15px 35px rgba(61, 44, 46, 0.18);
+            --radius-sm: 10px;
+            --radius-md: 18px;
+            --radius-lg: 28px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #1C1819;
+            --bg-card: #282224;
+            --bg-surface: #342C2E;
+            --text-main: #FBF4EE;
+            --text-muted: #C5B6B8;
+            --border-color: #4A3E41;
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ==========================================================================
+           2. ESTILOS GENERALES Y RESET
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ==========================================================================
+           3. ENCABEZADO Y NAVEGACIÓN
+           ========================================================================== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-card);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(232, 93, 117, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-btn {
+            background: var(--bg-surface);
+            color: var(--text-main);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-card);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.4rem;
+            background: none;
+            color: var(--text-main);
+        }
+
+        /* ==========================================================================
+           4. HERO BANNER
+           ========================================================================== */
+        .hero {
+            padding: 60px 0 80px;
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-main) 100%);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: rgba(232, 93, 117, 0.15);
+            color: var(--primary-color);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .hero-title span {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 90%;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(232, 93, 117, 0.35);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(232, 93, 117, 0.45);
+        }
+
+        .hero-img-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 480px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+            transform: rotate(-2deg);
+            transition: var(--transition);
+        }
+
+        .hero-img:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .hero-badge-float {
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+            background: var(--bg-card);
+            padding: 15px 22px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-badge-float i {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+        }
+
+        /* ==========================================================================
+           5. FILTROS, BÚSQUEDA Y SECCIÓN CATÁLOGO
+           ========================================================================== */
+        .catalog-section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.4rem;
+            color: var(--text-main);
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Barra de Control (Búsqueda y Filtro de Rango) */
+        .controls-bar {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 18px 12px 45px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .price-filter {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .price-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .price-filter input[type="range"] {
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .sort-select {
+            padding: 12px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* Pestañas de Categoría */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            padding: 10px 22px;
+            border-radius: 25px;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(232, 93, 117, 0.25);
+        }
+
+        /* GRID DE PRODUCTOS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 30px;
+        }
+
+        /* TARJETA DE PRODUCTO */
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.08);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        .fav-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .fav-btn.active {
+            color: var(--primary-color);
+        }
+
+        .product-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .product-rating {
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-rating span {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .old-price {
+            font-size: 0.95rem;
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-surface);
+            color: var(--primary-color);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 50px 0;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           6. CARRITO SLIDE-OVER (SIDEBAR)
+           ========================================================================== */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: var(--bg-card);
+            z-index: 2001;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-close-btn {
+            background: none;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+        }
+
+        .cart-body {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .qty-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .cart-item-remove {
+            color: #e74c3c;
+            background: none;
+            font-size: 1rem;
+            padding: 5px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-surface);
+        }
+
+        .coupon-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .coupon-box input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+        }
+
+        .coupon-box button {
+            padding: 8px 15px;
+            background: var(--text-main);
+            color: var(--bg-card);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .summary-row.total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border-top: 1px dashed var(--border-color);
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(232, 93, 117, 0.3);
+        }
+
+        .btn-checkout:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* ==========================================================================
+           7. MODALES (CHECKOUT & ESTADO DE PEDIDO)
+           ========================================================================== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: var(--radius-md);
+            padding: 30px;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            font-size: 1.4rem;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-main);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* BARRA DE PROGRESO DEL PEDIDO */
+        .order-tracker {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .order-tracker::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+
+        .tracker-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            border: 2px solid var(--border-color);
+        }
+
+        .tracker-step.completed .step-icon,
+        .tracker-step.active .step-icon {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .step-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           8. TESTIMONIOS Y SECCIÓN DE CONTACTO
+           ========================================================================== */
+        .testimonials-section {
+            background: var(--bg-surface);
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testimonial-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Contacto */
+        .contact-section {
+            padding: 70px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: var(--bg-surface);
+            color: var(--text-main);
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           9. TOAST NOTIFICACIONES
+           ========================================================================== */
+        .toast-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 4000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 14px 20px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid var(--primary-color);
+            animation: slideIn 0.3s forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ==========================================================================
+           10. RESPONSIVE DESIGN (MOBILE FIRST ADAPTATIONS)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-desc {
+                margin: 0 auto 30px;
+            }
+            .controls-bar {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO / NAVBAR -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <span>Dulce Tentación</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio" class="active">Inicio</a></li>
+                    <li><a href="#catalogo">Catálogo</a></li>
+                    <li><a href="#testimonios">Opiniones</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <!-- Botón Modo Oscuro/Claro -->
+                <button class="icon-btn" id="theme-toggle" title="Cambiar Tema">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <!-- Botón Lista de Favoritos -->
+                <button class="icon-btn" id="fav-modal-btn" title="Favoritos">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="badge-count" id="fav-count">0</span>
+                </button>
+
+                <!-- Botón Carrito de Compras -->
+                <button class="icon-btn" id="cart-toggle-btn" title="Carrito">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="badge-count" id="cart-count">0</span>
+                </button>
+
+                <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="hero" id="inicio">
+        <div class="container hero-grid">
+            <div>
+                <span class="hero-tag">?? 100% Repostería Artesanal</span>
+                <h1 class="hero-title">El sabor de la <span>felicidad</span> en cada bocado</h1>
+                <p class="hero-desc">Creaciones dulces preparadas diariamente con ingredientes orgánicos de primera calidad. Tortas personalizadas, macarons, tartas y tentaciones hechas con amor.</p>
+                <a href="#catalogo" class="btn-primary">
+                    Explorar Menú <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="hero-img-container">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="Torta Artesanal Dulce Tentación" class="hero-img">
+                <div class="hero-badge-float">
+                    <i class="fa-solid fa-award"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.9rem;">Calidad Premium</strong>
+                        <small style="color:var(--text-muted);">Pastelería de Autor</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO DE PRODUCTOS Y FILTROS -->
+    <section class="catalog-section" id="catalogo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestras Tentaciones</h2>
+                <p>Descubre nuestro exquisito catálogo artesanal</p>
+            </div>
+
+            <!-- CONTROLES Y FILTROS AVANZADOS -->
+            <div class="controls-bar">
+                <!-- Búsqueda en tiempo real -->
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Buscar tortas, macarons, cupcakes...">
+                </div>
+
+                <!-- Filtro por Precio Máximo -->
+                <div class="price-filter">
+                    <div class="price-label">
+                        <span>Precio Máximo:</span>
+                        <strong id="price-value">$50.000</strong>
+                    </div>
+                    <input type="range" id="price-range" min="1000" max="50000" step="1000" value="50000">
+                </div>
+
+                <!-- Ordenamiento -->
+                <select id="sort-select" class="sort-select">
+                    <option value="default">Ordenar por: Destacados</option>
+                    <option value="price-low">Precio: Menor a Mayor</option>
+                    <option value="price-high">Precio: Mayor a Menor</option>
+                    <option value="rating">Mejor Valorados ?</option>
+                </select>
+            </div>
+
+            <!-- PESTAÑAS DE CATEGORÍA -->
+            <div class="category-tabs" id="category-tabs">
+                <button class="tab-btn active" data-category="all">Todos</button>
+                <button class="tab-btn" data-category="Tortas">Tortas</button>
+                <button class="tab-btn" data-category="Cupcakes">Cupcakes</button>
+                <button class="tab-btn" data-category="Macarons">Macarons</button>
+                <button class="tab-btn" data-category="Tartas">Tartas</button>
+            </div>
+
+            <!-- REJILLA DE PRODUCTOS (Se carga dinámicamente con JS) -->
+            <div class="products-grid" id="products-grid">
+                <!-- Inyección JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="testimonials-section" id="testimonios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lo que dicen nuestros clientes</h2>
+                <p>La satisfacción Dulce Tentación</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div style="color:var(--accent-color); margin-bottom:10px;">?????</div>
+                    <p>"La torta Red Velvet para el cumpleaños de mi hija fue una obra de arte. Sabor balanceado y súper fresca."</p>
+                    <div class="testimonial-user">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" class="testimonial-avatar" alt="Cliente">
+                        <div>
+                            <strong>Mariana Gómez</strong>
+                            <small style="display:block; color:var(--text-muted);">Cliente Frecuente</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div style="color:var(--accent-color); margin-bottom:10px;">?????</div>
+                    <p>"Los macarons son exactamente como los que probé en París. La presentación es impecable. ¡100% recomendados!"</p>
+                    <div class="testimonial-user">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="testimonial-avatar" alt="Cliente">
+                        <div>
+                            <strong>Carlos Rodríguez</strong>
+                            <small style="display:block; color:var(--text-muted);">Comprador Verificado</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULARIO DE CONTACTO -->
+    <section class="contact-section" id="contacto">
+        <div class="container contact-grid">
+            <div>
+                <h2>¿Tienes un evento especial?</h2>
+                <p style="margin-bottom:20px; color:var(--text-muted);">Hacemos mesas dulces, tortas de boda y pedidos personalizados para hacer inolvidable tu celebración.</p>
+                <div style="display:flex; gap:15px; flex-direction:column;">
+                    <div><i class="fa-solid fa-location-dot" style="color:var(--primary-color);"></i> Av. Pastelería 1234, Ciudad</div>
+                    <div><i class="fa-solid fa-phone" style="color:var(--primary-color);"></i> +54 11 4321-8765</div>
+                    <div><i class="fa-solid fa-envelope" style="color:var(--primary-color);"></i> contacto@dulcetentacion.com</div>
+                </div>
+            </div>
+            <form id="contact-form" style="background:var(--bg-card); padding:30px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Mensaje / Pedido Especial</label>
+                    <textarea rows="4" required placeholder="Cuéntanos detalles de tu evento..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Enviar Consulta</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="logo" style="margin-bottom:15px;">
+                    <div class="logo-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                    <span>Dulce Tentación</span>
+                </div>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Pastelería artesanal dedicada a endulzar momentos especiales con recetas tradicionales y un toque moderno.</p>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <ul style="list-style:none; margin-top:10px; display:flex; flex-direction:column; gap:8px; font-size:0.9rem;">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#catalogo">Productos</a></li>
+                    <li><a href="#testimonios">Reseñas</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legales</h4>
+                <ul style="list-style:none; margin-top:10px; display:flex; flex-direction:column; gap:8px; font-size:0.9rem;">
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Redes Sociales</h4>
+                <div style="display:flex; gap:12px; margin-top:10px;">
+                    <a href="#" class="icon-btn"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="icon-btn"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="icon-btn"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dulce Tentación. Todos los derechos reservados. Proyecto Académico de Repostería.</p>
+        </div>
+    </footer>
+
+    <!-- SIDEBAR DEL CARRITO -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-basket-shopping"></i> Tu Carrito</h3>
+            <button class="cart-close-btn" id="cart-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="cart-items-container">
+            <!-- Items agregados JS -->
+        </div>
+        <div class="cart-footer">
+            <!-- Cupón de descuento -->
+            <div class="coupon-box">
+                <input type="text" id="coupon-input" placeholder="Cupón (ej: DULCE10)">
+                <button id="apply-coupon-btn">Aplicar</button>
+            </div>
+            
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">$0</span>
+            </div>
+            <div class="summary-row" id="discount-row" style="display:none; color:var(--primary-color);">
+                <span>Descuento</span>
+                <span id="cart-discount">-$0</span>
+            </div>
+            <div class="summary-row">
+                <span>Envío</span>
+                <span id="cart-shipping">$1.500</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span id="cart-total">$0</span>
+            </div>
+
+            <button class="btn-checkout" id="checkout-start-btn">Proceder al Pago</button>
+        </div>
+    </aside>
+
+    <!-- MODAL DE CHECKOUT / PROCESO DE COMPRA -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="checkout-close-btn"><i class="fa-solid fa-xmark"></i></button>
+            <h2 style="margin-bottom:20px;">?? Finalizar Compra</h2>
+            <form id="checkout-form">
+                <h4 style="margin-bottom:10px;">1. Datos de Envío</h4>
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" required placeholder="Juan Pérez">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <input type="text" required placeholder="Calle 123">
+                    </div>
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <input type="text" required placeholder="Buenos Aires">
+                    </div>
+                </div>
+
+                <h4 style="margin:15px 0 10px;">2. Método de Pago</h4>
+                <div class="form-group">
+                    <select id="payment-method">
+                        <option value="card">Tarjeta de Crédito / Débito</option>
+                        <option value="transfer">Transferencia Bancaria (-10%)</option>
+                        <option value="cash">Efectivo al Retirar</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top:15px;">Confirmar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL SEGUIMIENTO DE PEDIDO (ANIMADO) -->
+    <div class="modal" id="tracker-modal">
+        <div class="modal-content" style="text-align:center;">
+            <button class="modal-close" id="tracker-close-btn"><i class="fa-solid fa-xmark"></i></button>
+            <i class="fa-solid fa-circle-check" style="font-size:3.5rem; color:#2ecc71; margin-bottom:15px;"></i>
+            <h2>¡Pedido Confirmado!</h2>
+            <p style="color:var(--text-muted); font-size:0.9rem;">Número de Orden: <strong id="order-number">#DT-8942</strong></p>
+
+            <div class="order-tracker">
+                <div class="tracker-step completed">
+                    <div class="step-icon"><i class="fa-solid fa-receipt"></i></div>
+                    <div class="step-text">Recibido</div>
+                </div>
+                <div class="tracker-step active">
+                    <div class="step-icon"><i class="fa-solid fa-kitchen-set"></i></div>
+                    <div class="step-text">En Cocina</div>
+                </div>
+                <div class="tracker-step">
+                    <div class="step-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div class="step-text">En Camino</div>
+                </div>
+                <div class="tracker-step">
+                    <div class="step-icon"><i class="fa-solid fa-box-open"></i></div>
+                    <div class="step-text">Entregado</div>
+                </div>
+            </div>
+
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px;">Estamos horneando tu pedido con mucho dedicación.</p>
+            <button class="btn-primary" onclick="document.getElementById('tracker-modal').classList.remove('open')" style="margin:0 auto;">Entendido</button>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DE TOASTS FLOTANTES -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        /* ==========================================================================
+           1. BASE DE DATOS DE PRODUCTOS (MOCK)
+           ========================================================================== */
+        const products = [
+            {
+                id: 1,
+                name: "Torta Red Velvet Premium",
+                category: "Tortas",
+                price: 18500,
+                oldPrice: 21000,
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?auto=format&fit=crop&w=600&q=80",
+                description: "Bizcocho de terciopelo rojo con relleno de suave queso crema y frutos rojos."
+            },
+            {
+                id: 2,
+                name: "Caja Macarons x12 Surti",
+                category: "Macarons",
+                price: 12000,
+                oldPrice: null,
+                rating: 4.8,
+                image: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=600&q=80",
+                description: "Finos macarons franceses de pistacho, frambuesa, chocolate belga y vainilla."
+            },
+            {
+                id: 3,
+                name: "Cupcakes Chocolate Fudge x6",
+                category: "Cupcakes",
+                price: 8500,
+                oldPrice: 9800,
+                rating: 4.7,
+                image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=600&q=80",
+                description: "Cupcakes de chocolate intenso con buttercream esponjoso y chispas."
+            },
+            {
+                id: 4,
+                name: "Tarta Tatin de Manzana",
+                category: "Tartas",
+                price: 14200,
+                oldPrice: null,
+                rating: 4.6,
+                image: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=600&q=80",
+                description: "Clásica tarta francesa caramelizada con manzanas crujientes y canela."
+            },
+            {
+                id: 5,
+                name: "Torta Cheesecake de Frutilla",
+                category: "Tortas",
+                price: 19500,
+                oldPrice: 22000,
+                rating: 5.0,
+                image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80",
+                description: "Estilo New York sobre crocante base de galletas y salsa artesanal de frutillas."
+            },
+            {
+                id: 6,
+                name: "Cupcakes Vainilla & Lavanda",
+                category: "Cupcakes",
+                price: 7900,
+                oldPrice: null,
+                rating: 4.5,
+                image: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=600&q=80",
+                description: "Delicados cupcakes infusionados con notas de lavanda natural y vainilla."
+            },
+            {
+                id: 7,
+                name: "Lemon Pie Artesanal",
+                category: "Tartas",
+                price: 13000,
+                oldPrice: 15000,
+                rating: 4.8,
+                image: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=600&q=80",
+                description: "Crema de limón cítrica perfectamente equilibrada con merengue italiano dorado."
+            },
+            {
+                id: 8,
+                name: "Torta Ópera Francesa",
+                category: "Tortas",
+                price: 23000,
+                oldPrice: null,
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80",
+                description: "Capas de bizcocho de almendra impregnadas en café con ganache de chocolate."
+            }
+        ];
+
+        /* ==========================================================================
+           2. ESTADO GLOBAL DE LA APLICACIÓN
+           ========================================================================== */
+        // Carga carrito y favoritos desde localStorage si existen
+        let cart = JSON.parse(localStorage.getItem('dt_cart')) || [];
+        let favorites = JSON.parse(localStorage.getItem('dt_favs')) || [];
+        let activeDiscount = 0; // Porcentaje de descuento aplicado
+
+        /* ==========================================================================
+           3. INICIALIZACIÓN Y EVENTOS PRINCIPALES
+           ========================================================================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            updateCartUI();
+            updateFavBadge();
+            initTheme();
+
+            // Escuchadores de Filtros y Búsqueda
+            document.getElementById('search-input').addEventListener('input', filterProducts);
+            document.getElementById('price-range').addEventListener('input', (e) => {
+                document.getElementById('price-value').innerText = `$${parseInt(e.target.value).toLocaleString('es-AR')}`;
+                filterProducts();
+            });
+            document.getElementById('sort-select').addEventListener('change', filterProducts);
+
+            // Categorías
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    filterProducts();
+                });
+            });
+
+            // Toggle Carrito Sidebar
+            document.getElementById('cart-toggle-btn').addEventListener('click', toggleCart);
+            document.getElementById('cart-close-btn').addEventListener('click', toggleCart);
+            document.getElementById('cart-overlay').addEventListener('click', toggleCart);
+
+            // Toggle Tema Claro/Oscuro
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
+            // Aplicar Cupón
+            document.getElementById('apply-coupon-btn').addEventListener('click', applyCoupon);
+
+            // Checkout Modal
+            document.getElementById('checkout-start-btn').addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showToast('Tu carrito está vacío', 'error');
+                    return;
+                }
+                toggleCart();
+                document.getElementById('checkout-modal').classList.add('open');
+            });
+            document.getElementById('checkout-close-btn').addEventListener('click', () => {
+                document.getElementById('checkout-modal').classList.remove('open');
+            });
+
+            // Formulario de Checkout
+            document.getElementById('checkout-form').addEventListener('submit', handleCheckoutSubmit);
+            document.getElementById('tracker-close-btn').addEventListener('click', () => {
+                document.getElementById('tracker-modal').classList.remove('open');
+            });
+        });
+
+        /* ==========================================================================
+           4. RENDERIZADO Y FILTRADO DE PRODUCTOS
+           ========================================================================== */
+        function renderProducts(items) {
+            const container = document.getElementById('products-grid');
+            container.innerHTML = '';
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <i class="fa-solid fa-cookie-bite" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                        <p>No encontramos tentaciones con esos criterios.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            items.forEach(product => {
+                const isFav = favorites.includes(product.id);
+                const card = document.createElement('div');
+                card.className = 'product-card';
+
+                card.innerHTML = `
+                    <div class="product-img-wrapper">
+                        <img src="${product.image}" alt="${product.name}" class="product-img">
+                        ${product.oldPrice ? `<span class="discount-badge">¡Oferta!</span>` : ''}
+                        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(${product.id})">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">${product.category}</span>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <strong>${product.rating}</strong>
+                            <span>(Reseñas)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <span class="current-price">$${product.price.toLocaleString('es-AR')}</span>
+                            ${product.oldPrice ? `<span class="old-price">$${product.oldPrice.toLocaleString('es-AR')}</span>` : ''}
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart(${product.id})">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const maxPrice = parseInt(document.getElementById('price-range').value);
+            const selectedCategory = document.querySelector('.tab-btn.active').dataset.category;
+            const sortOption = document.getElementById('sort-select').value;
+
+            let filtered = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm);
+                const matchesPrice = product.price <= maxPrice;
+                const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+                return matchesSearch && matchesPrice && matchesCategory;
+            });
+
+            // Ordenamiento
+            if (sortOption === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortOption === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sortOption === 'rating') {
+                filtered.sort((a, b) => b.rating - a.rating);
+            }
+
+            renderProducts(filtered);
+        }
+
+        /* ==========================================================================
+           5. LÓGICA DEL CARRITO DE COMPRAS
+           ========================================================================== */
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCart();
+            updateCartUI();
+            showToast(`¡${product.name} agregado al carrito!`, 'success');
+        }
+
+        function updateQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                    return;
+                }
+                saveCart();
+                updateCartUI();
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+            showToast('Producto eliminado del carrito', 'info');
+        }
+
+        function saveCart() {
+            localStorage.setItem('dt_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const cartCountBadge = document.getElementById('cart-count');
+            container.innerHTML = '';
+
+            let subtotal = 0;
+            let totalItems = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding: 40px 0; color:var(--text-muted);">
+                        <i class="fa-solid fa-basket-shopping" style="font-size:2.5rem; margin-bottom:10px;"></i>
+                        <p>Tu carrito está vacío.</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    totalItems += item.quantity;
+
+                    const cartItemEl = document.createElement('div');
+                    cartItemEl.className = 'cart-item';
+                    cartItemEl.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toLocaleString('es-AR')}</div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})"><i class="fa-solid fa-trash-can"></i></button>
+                    `;
+                    container.appendChild(cartItemEl);
+                });
+            }
+
+            cartCountBadge.innerText = totalItems;
+
+            // Cálculos del Resumen
+            const discountAmount = (subtotal * activeDiscount) / 100;
+            const shipping = subtotal > 0 ? 1500 : 0;
+            const total = subtotal - discountAmount + shipping;
+
+            document.getElementById('cart-subtotal').innerText = `$${subtotal.toLocaleString('es-AR')}`;
+            document.getElementById('cart-shipping').innerText = `$${shipping.toLocaleString('es-AR')}`;
+            document.getElementById('cart-total').innerText = `$${total.toLocaleString('es-AR')}`;
+
+            if (activeDiscount > 0) {
+                document.getElementById('discount-row').style.display = 'flex';
+                document.getElementById('cart-discount').innerText = `-$${discountAmount.toLocaleString('es-AR')} (${activeDiscount}%)`;
+            } else {
+                document.getElementById('discount-row').style.display = 'none';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
+            document.getElementById('cart-overlay').classList.toggle('open');
+        }
+
+        /* ==========================================================================
+           6. CUPONES DE DESCUENTO
+           ========================================================================== */
+        function applyCoupon() {
+            const couponCode = document.getElementById('coupon-input').value.trim().toUpperCase();
+            
+            if (couponCode === 'DULCE10') {
+                activeDiscount = 10;
+                showToast('¡Cupón DULCE10 aplicado (10% OFF)!', 'success');
+            } else if (couponCode === 'FIESTA20') {
+                activeDiscount = 20;
+                showToast('¡Cupón FIESTA20 aplicado (20% OFF)!', 'success');
+            } else {
+                showToast('Cupón inválido o expirado', 'error');
+                activeDiscount = 0;
+            }
+            updateCartUI();
+        }
+
+        /* ==========================================================================
+           7. SISTEMA DE FAVORITOS
+           ========================================================================== */
+        function toggleFavorite(productId) {
+            const index = favorites.indexOf(productId);
+            if (index === -1) {
+                favorites.push(productId);
+                showToast('Añadido a tus favoritos', 'success');
+            } else {
+                favorites.splice(index, 1);
+                showToast('Eliminado de tus favoritos', 'info');
+            }
+            localStorage.setItem('dt_favs', JSON.stringify(favorites));
+            updateFavBadge();
+            filterProducts(); // Re-renderiza para actualizar el corazón activo
+        }
+
+        function updateFavBadge() {
+            document.getElementById('fav-count').innerText = favorites.length;
+        }
+
+        /* ==========================================================================
+           8. PROCESO DE CHECKOUT Y SEGUIMIENTO DE PEDIDO
+           ========================================================================== */
+        function handleCheckoutSubmit(e) {
+            e.preventDefault();
+            
+            // Cerrar checkout y vaciar carrito
+            document.getElementById('checkout-modal').classList.remove('open');
+            cart = [];
+            activeDiscount = 0;
+            saveCart();
+            updateCartUI();
+
+            // Abrir tracker animado
+            document.getElementById('order-number').innerText = `#DT-${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('tracker-modal').classList.add('open');
+        }
+
+        /* ==========================================================================
+           9. MODO OSCURO / MODO CLARO
+           ========================================================================== */
+        function initTheme() {
+            const savedTheme = localStorage.getItem('dt_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('dt_theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#theme-toggle i');
+            icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        /* ==========================================================================
+           10. SITEMA DE TOAST NOTIFICACIONES
+           ========================================================================== */
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            
+            let icon = 'fa-circle-info';
+            if (type === 'success') icon = 'fa-circle-check';
+            if (type === 'error') icon = 'fa-circle-exclamation';
+
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s reverse forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
